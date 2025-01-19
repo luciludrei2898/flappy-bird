@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 1da46ffc40a72d147aaf77b52c74bb09
+guid: cf22e81b3a4106849837ad55e5233722
 TrueTypeFontImporter:
   externalObjects: {}
   serializedVersion: 4
@@ -9,7 +9,7 @@ TrueTypeFontImporter:
   characterPadding: 1
   includeFontData: 1
   fontNames:
-  - Luckiest Guy
+  - 8-bit Operator+ 8
   fallbackFontReferences: []
   customCharacters: 
   fontRenderingMode: 0

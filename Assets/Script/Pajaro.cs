@@ -26,18 +26,21 @@ public class Pajaro : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // EN EL CASO DE ESTAR MUERTO, NO SE MUEVE
         if (!isDead)
         {
 #if UNITY_ANDROID || UNITY_IPhonePlayer
-                // En dispositivos moviles (Android o iOS), detecta el toque
-                if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
-                {
-                    Fly();
-                }
+        // En dispositivos móviles (Android o iOS), detecta el toque
+        if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
+        {
+            Fly();
+        }
 #elif UNITY_STANDALONE || UNITY_EDITOR
-            // En ordenadores (Windows, Mac, Linux, o en el editor de Unity), detecta el clic del ratón
             if (Input.GetMouseButtonDown(0))
+            {
+                Fly();
+            }
+
+            if (Input.GetKeyDown(KeyCode.Space))
             {
                 Fly();
             }
