@@ -8,6 +8,8 @@ public class GameController : MonoBehaviour
     public static GameController instance;
 
     public GameObject gameOverText;
+    public GameObject buttonExit;
+    public GameObject buttonPlayAgain;
     public bool gameOver;
     public float scrollSpeed = -1.5f;
 
@@ -42,21 +44,15 @@ public class GameController : MonoBehaviour
         SoundSystem.instancie.PlayPoint();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        if (gameOver && Input.GetMouseButtonDown(0))
-        {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        }
-    }
-
     // METODO QUE MUESTRA EL TEXT DE GAME OVER
 
     public void BirdDie()
     {
         // CUANDO ESTA MUERTO, SE ACTIVA EL TEXTO EN TRUE Y SE MUESTRA EN PANTALLA
         gameOverText.SetActive(true);
+        buttonExit.SetActive(true);
+        buttonPlayAgain.SetActive(true);
+
         gameOver = true;
     }
 

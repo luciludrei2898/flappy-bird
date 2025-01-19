@@ -30,7 +30,7 @@ public class Pajaro : MonoBehaviour
         if (!isDead)
         {
 #if UNITY_ANDROID || UNITY_IPhonePlayer
-                // En dispositivos móviles (Android o iOS), detecta el toque
+                // En dispositivos moviles (Android o iOS), detecta el toque
                 if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
                 {
                     Fly();
