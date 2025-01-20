@@ -3,7 +3,7 @@ using UnityEngine.SceneManagement;
 using TMPro;
 using UnityEngine.Advertisements;  // Asegúrate de tener este using
 
-public class GameController : MonoBehaviour, IUnityAdsListener
+public class GameController : MonoBehaviour
 {
     public static GameController instance;
 
@@ -16,10 +16,8 @@ public class GameController : MonoBehaviour, IUnityAdsListener
     private int score = 0;
     public TMP_Text scoreText;
 
-    // Variables para controlar los anuncios
-    private int deathCount = 0;  // Contador de muertes del pájaro
-    public int deathsToShowAd = 3;  // Cantidad de muertes necesarias para mostrar el anuncio
-    private string adUnitId = "Rewarded_Android";  // ID del anuncio (asegúrate de usar el correcto)
+    private int deathCount = 0;  
+    public int deathsToShowAd = 3;  
 
     void Awake()
     {
@@ -35,9 +33,7 @@ public class GameController : MonoBehaviour, IUnityAdsListener
 
     void Start()
     {
-        // Inicializa Unity Ads
-        Advertisement.Initialize("your_game_id", true);  
-        Advertisement.AddListener(this); 
+       
     }
 
     public void AddPoints()
@@ -46,7 +42,6 @@ public class GameController : MonoBehaviour, IUnityAdsListener
 
         score++;
         scoreText.text = "Score: " + score;
-
         SoundSystem.instancie.PlayPoint();
     }
 
@@ -59,22 +54,8 @@ public class GameController : MonoBehaviour, IUnityAdsListener
         gameOverText.SetActive(true);
         buttonExit.SetActive(true);
         buttonPlayAgain.SetActive(true);
-
         gameOver = true;
 
-        if (deathCount >= deathsToShowAd)
-        {
-            ShowAd();
-            deathCount = 0; 
-        }
-    }
-
-    private void ShowAd()
-    {
-        
-            Advertisement.Show(adUnitId);
-        
-       
     }
 
     // EXIT GAME
@@ -87,8 +68,6 @@ public class GameController : MonoBehaviour, IUnityAdsListener
         Application.Quit();
 #endif
     }
-
-    // RESTART
     public void PlayAgain()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
@@ -110,39 +89,6 @@ public class GameController : MonoBehaviour, IUnityAdsListener
     }
 
 
-    public void OnUnityAdsReady(string placementId)
-    {
-    }
-
-    public void OnUnityAdsDidError(string message)
-    {
-        Debug.LogError("Error en Unity Ads: " + message);
-    }
-
-    public void OnUnityAdsDidStart(string placementId)
-    {
-    }
-
-    public void OnUnityAdsDidFinish(string placementId, ShowResult showResult)
-    {
-        if (placementId == adUnitId)
-        {
-            if (showResult == ShowResult.Finished)
-            {
-                Debug.Log("El anuncio ha sido completado.");
-            }
-            else if (showResult == ShowResult.Skipped)
-            {
-                Debug.Log("El anuncio fue saltado.");
-            }
-            else if (showResult == ShowResult.Failed)
-            {
-                Debug.LogError("El anuncio falló.");
-            }
-        }
-    }
+ 
 }
 
-internal interface IUnityAdsListener
-{
-}

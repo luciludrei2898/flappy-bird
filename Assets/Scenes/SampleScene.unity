@@ -277,7 +277,7 @@ Transform:
   m_GameObject: {fileID: 431558829}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -1.09, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -756,6 +756,7 @@ MonoBehaviour:
   gameOver: 0
   scrollSpeed: -1.5
   scoreText: {fileID: 876894656}
+  deathsToShowAd: 3
 --- !u!4 &529506789
 Transform:
   m_ObjectHideFlags: 0
@@ -1380,7 +1381,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 985013821}
-  - component: {fileID: 985013820}
   m_Layer: 0
   m_Name: ControllerAds
   m_TagString: Untagged
@@ -1388,25 +1388,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &985013820
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 985013819}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 17242ad9c62f36f4dabd41f0c22373a3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  iOsGameId: 5754812
-  androidGameId: 5754813
-  idAdsIos: Banner_iOS
-  idAdsAndroid: Banner_Android
-  idSelect: 
-  idAdSelect: 
-  moodEvidence: 1
 --- !u!4 &985013821
 Transform:
   m_ObjectHideFlags: 0
@@ -3039,7 +3020,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -775822535
   m_SortingLayer: 3
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 1993149139065815910, guid: 35b4d233a6511334fb8c1f5a4f6ae6cf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
