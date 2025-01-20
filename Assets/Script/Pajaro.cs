@@ -16,20 +16,17 @@ public class Pajaro : MonoBehaviour
         anim = GetComponent<Animator>();
     }
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         
     }
 
 
-    // Update is called once per frame
     void Update()
     {
         if (!isDead)
         {
 #if UNITY_ANDROID || UNITY_IPhonePlayer
-        // En dispositivos móviles (Android o iOS), detecta el toque
         if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
         {
             Fly();

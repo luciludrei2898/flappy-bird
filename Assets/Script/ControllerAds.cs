@@ -11,8 +11,8 @@ public class ControllerAds : MonoBehaviour, IUnityAdsInitializationListener, IUn
     public string idAdsIos;
     public string idAdsAndroid;
 
-    public string idSelect;
-    public string idAdSelect;
+    private string idSelect;
+    private string idAdSelect;
 
     public bool moodEvidence = true;
 
@@ -62,7 +62,7 @@ public class ControllerAds : MonoBehaviour, IUnityAdsInitializationListener, IUn
             LoadAdds();
         } else
         {
-            DontDestroyOnLoad(gameObject);
+            Destroy(gameObject);
         }
     }
 
@@ -93,14 +93,5 @@ public class ControllerAds : MonoBehaviour, IUnityAdsInitializationListener, IUn
         Advertisement.Load(idAdSelect, this);
     }
 
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+  
 }

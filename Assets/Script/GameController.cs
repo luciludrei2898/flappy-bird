@@ -15,7 +15,7 @@ public class GameController : MonoBehaviour
     private int score = 0;
     public TMP_Text scoreText;
 
-    private int deathCount = 0;  
+    private int deathCount = 0;
     public int deathsToShowAd = 3;  
 
     void Awake()
@@ -28,11 +28,27 @@ public class GameController : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        if (!PlayerPrefs.HasKey("FirstTime"))  
+        {
+            deathCount = 0;
+            PlayerPrefs.SetInt("DeathCount", deathCount); 
+            PlayerPrefs.SetInt("FirstTime", 1);  
+            PlayerPrefs.Save();
+        }
+        else
+        {
+            deathCount = PlayerPrefs.GetInt("DeathCount", 0); 
+        }
+
+        Debug.Log("Contador de muertes cargado: " + deathCount);
     }
 
     void Start()
     {
-       
+        gameOverText.SetActive(false);
+        buttonExit.SetActive(false);
+        buttonPlayAgain.SetActive(false);
     }
 
     public void AddPoints()
@@ -44,17 +60,30 @@ public class GameController : MonoBehaviour
         SoundSystem.instancie.PlayPoint();
     }
 
-    // METODO QUE MUESTRA EL TEXT DE GAME OVER
     public void BirdDie()
     {
         deathCount++;
         Debug.Log("Muertes del pájaro: " + deathCount);
+
+        PlayerPrefs.SetInt("DeathCount", deathCount);
+        PlayerPrefs.Save();
 
         gameOverText.SetActive(true);
         buttonExit.SetActive(true);
         buttonPlayAgain.SetActive(true);
         gameOver = true;
 
+        if (deathCount % 3 == 0) 
+        {
+            if (ControllerAds.instance != null)
+            {
+                ControllerAds.instance.ShowAd();
+            }
+            else
+            {
+                Debug.LogError("ControllerAds no está inicializado.");
+            }
+        }
     }
 
     // EXIT GAME
@@ -67,6 +96,7 @@ public class GameController : MonoBehaviour
         Application.Quit();
 #endif
     }
+
     public void PlayAgain()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
@@ -86,8 +116,5 @@ public class GameController : MonoBehaviour
     {
         SceneManager.LoadScene("Credits");
     }
-
-
- 
 }
 
