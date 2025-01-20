@@ -233,6 +233,7 @@ MonoBehaviour:
   gameOver: 0
   scrollSpeed: -1.5
   scoreText: {fileID: 0}
+  deathsToShowAd: 3
 --- !u!4 &114947624
 Transform:
   m_ObjectHideFlags: 0
@@ -805,7 +806,6 @@ GameObject:
   - component: {fileID: 1561547419}
   - component: {fileID: 1561547418}
   - component: {fileID: 1561547417}
-  - component: {fileID: 1561547421}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -896,18 +896,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!114 &1561547421
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1561547416}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a89ed51913b43e542b438281bf79e178, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1576046746
 GameObject:
   m_ObjectHideFlags: 0

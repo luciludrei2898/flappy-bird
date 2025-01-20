@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Flappy_Logo_0: 1993149139065815910
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
