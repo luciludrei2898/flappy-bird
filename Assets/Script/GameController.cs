@@ -1,7 +1,6 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
-using UnityEngine.Advertisements;  // Asegúrate de tener este using
 
 public class GameController : MonoBehaviour
 {
