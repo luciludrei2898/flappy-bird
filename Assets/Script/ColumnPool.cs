@@ -3,69 +3,65 @@ using UnityEngine.Rendering;
 
 public class ColumnPool : MonoBehaviour
 {
+    // ATTRIBUTES
 
-    // ATRIBUTOS
+    public int columnPoolSize = 6;  
+    public GameObject columnPrefab; 
 
-    public int columnPoolSize = 6;
-    public GameObject columnPrefab;
+    private GameObject[] columns;  
+    private Vector2 objectPoolPosition = new Vector2(-14, 0);  
+    private float timeLastColumn;  
+    public float resetRate;  // Rate at which new columns are created
 
-    private GameObject[] columns;
-    private Vector2 objectPoolPosition = new Vector2(-14, 0);
+    // COLUMN PARAMETERS
 
-    private float timeLastColumn;
-    public float resetRate;
+    public float columnMin = -2.9f;  // Minimum Y position 
+    public float columnMax = 1.4f;  // Maximum Y position 
+    private float positionXColumn = 10f;  // X position for the columns
 
-    // VALORES COLUMNAS 
+    private int currentColumn;  
 
-    public float columnMin = -2.9f;
-    public float columnMax = 1.4f;
-    private float positionXColumn = 10f;
-
-    private int currentColumn;
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        columns = new GameObject[columnPoolSize];
+        columns = new GameObject[columnPoolSize];  // Initialize the columns array
 
-        for(int i= 0; i<columnPoolSize; i++)
+        // Instantiate columns
+        for (int i = 0; i < columnPoolSize; i++)
         {
             columns[i] = Instantiate(columnPrefab, objectPoolPosition, Quaternion.identity);
         }
 
-        ColumnApatirion();
+        ColumnApatirion();  // Create the first column
     }
 
-    // Update is called once per frame
+    // Update 
     void Update()
     {
-        timeLastColumn += Time.deltaTime; 
+        timeLastColumn += Time.deltaTime;  // Increment the timer
 
+        // If the timer exceeds the reset rate and the game isn't over, function new columnn
         if (timeLastColumn >= resetRate && !GameController.instance.gameOver)
         {
-            timeLastColumn = 0; // RESET AL ACUMULADOR DE TIEMPO
-
-            ColumnApatirion();
-
+            timeLastColumn = 0;  // Reset 
+            ColumnApatirion();  // Call the function
         }
     }
 
+    // Method to spawn a new column
     void ColumnApatirion()
     {
-        // Columnas con valores aleatorios
-
+        // Generate a random Y position
         float positionY = Random.Range(columnMin, columnMax);
 
-        // Le damos la posicion a la columna del array que hemos creado antes
+        // Set the position of the current column
         columns[currentColumn].transform.position = new Vector2(positionXColumn, positionY);
-        currentColumn++; // Asi pasamos a todas los columnas
 
-        // Para evitar salirnos del array, comprobamos la columna que elegimos y la ponemos a cero si es menor que el size
+        currentColumn++;  // Move to the next column 
 
+        // Reset it to 0 
         if (currentColumn >= columnPoolSize)
         {
             currentColumn = 0;
         }
     }
-
 }
